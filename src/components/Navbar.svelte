@@ -1,5 +1,7 @@
 <style>
     .navbar {
+      width: 100%;
+      height:50px;
       display: flex;
       justify-content: center;
       background-color: black;
@@ -8,13 +10,22 @@
   
     .nav-button {
       color: white;
-      background: blue;
-      margin: 0 5px;
+      background: #CC1E72;
       padding: 5px 15px;
       text-transform: uppercase;
       cursor: pointer;
       border: none;
     }
+
+    .navbar button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+    .navbar button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
   </style>
   
   <div class="navbar">

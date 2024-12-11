@@ -9,11 +9,11 @@
       align-items: center;
       width: 100%;
       padding: 10px;
-      background-color: rgba(0, 0, 0, 0.7);
+      
     }
   
     .logo {
-      width: 50px;
+      width: 100px;
     }
   
     .search-input {
@@ -29,11 +29,12 @@
     .button {
       display: flex;
       align-items: center;
-      background: blue;
+      background: #CC1E72;
       color: white;
       padding: 5px 10px;
       border: none;
       cursor: pointer;
+      border-radius: 5px;
     }
   </style>
   

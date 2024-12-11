@@ -16,82 +16,122 @@
     }
   </script>
   
-  <style>
-    .carousel {
+  <style lang="scss">
+    /* Contenedor general del carrusel */
+    .carousel-container {
+      width: 100%;
+      height: 400px; 
       position: relative;
-      width: 80%;
-      max-width: 800px;
-      margin: 20px auto;
-      overflow: hidden;
-      border: 2px solid black;
+      background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco y ligeramente transparente */
+      display: flex;
+      flex-direction: column; /* Alinea todo de arriba hacia abajo */
+      justify-content: center; /* Centra el contenido verticalmente */
+      align-items: center; /* Centra el contenido horizontalmente */
     }
   
+    /* Contenedor para la imagen y los botones */
     .image-container {
+      width: 80%;
+      height: 80%; /* La imagen ocupará un 80% del alto del carrusel */
       display: flex;
-      transition: transform 0.5s ease;
-      transform: translateX(-{current * 100}%);
+      flex-direction: column; /* Coloca los botones y los círculos debajo de la imagen */
+      justify-content: center; /* Centra la imagen verticalmente */
+      align-items: center; /* Centra los botones y círculos debajo de la imagen */
+      position: relative;
+      overflow: hidden;
     }
   
     .image {
+      max-width: 100%; /* La imagen no se desborda en el ancho */
+      max-height: 80%; /* La imagen se ajusta al alto disponible */
+      object-fit: contain; /* Mantiene la proporción sin distorsionar */
+    }
+  
+    /* Estilo para los botones de navegación debajo de la imagen */
+    .buttons-container {
+      display: flex;
+      justify-content: space-between; /* Espacio entre los botones */
       width: 100%;
-      flex-shrink: 0;
+      padding: 10px 0; /* Separación vertical entre imagen y botones */
     }
   
     .button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: black;
+      background-color: rgba(0, 0, 0, 0.5);
       color: white;
       border: none;
-      cursor: pointer;
       padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
     }
   
-    .prev {
-      left: 10px;
-    }
-  
-    .next {
-      right: 10px;
-    }
-  
+    /* Estilo para los círculos dentro del contenedor blanco */
     .dots {
       display: flex;
-      justify-content: center;
+      justify-content: center; /* Centra los círculos */
       margin-top: 10px;
+      width: 100%;
+      position: absolute; /* Permite posicionar los círculos debajo de la imagen */
+      bottom: 10px; /* Los coloca 10px por encima del fondo */
     }
   
     .dot {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       margin: 0 5px;
-      background: gray;
+      background-color: rgba(0, 0, 0, 0.3);
       border-radius: 50%;
       cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
     }
   
     .dot.active {
-      background: blue;
+      background-color: #CC1E72;
+      transform: scale(1.2); /* Efecto de escala para el dot activo */
+    }
+  
+    /* Alineación de los botones de navegación a los lados */
+    .prev, .next {
+      position: absolute;
+      top: 50%; /* Centramos los botones verticalmente */
+      transform: translateY(-50%);
+    }
+  
+    .prev {
+      left: 10px; /* Botón izquierdo */
+    }
+  
+    .next {
+      right: 10px; /* Botón derecho */
     }
   </style>
   
-  <div class="carousel">
-    <div class="image-container" style="transform: translateX(-{current * 100}%)">
-      {#each images as img}
-        <img class="image" src={img} alt="Imagen" />
+  <!-- Contenedor principal del carrusel -->
+  <div class="carousel-container">
+    <!-- Caja para mostrar la imagen, los botones y los círculos -->
+    <div class="image-container">
+      <img class="image" src={images[current]} alt="Imagen" />
+      
+      <!-- Contenedor de los botones debajo de la imagen -->
+      <div class="buttons-container">
+        <button class="button prev" on:click={prev}>&lt;</button>
+        <button class="button next" on:click={next}>&gt;</button>
+      </div>
+    </div>
+  
+    <!-- Círculos debajo de la imagen y dentro del contenedor blanco -->
+    <div class="dots">
+      {#each images as _, i}
+        <button
+          class="dot"
+          class:active={current === i}
+          on:click={() => (current = i)}
+          on:keydown={(e) => e.key === 'Enter' && (current = i)} 
+          tabindex="0" 
+        ></button>
       {/each}
     </div>
-    <button class="button prev" on:click={prev}>&lt;</button>
-    <button class="button next" on:click={next}>&gt;</button>
-  </div>
-  
-  <div class="dots">
-    {#each images as _, i}
-      <div
-        class="dot {current === i ? 'active' : ''}"
-        on:click={() => (current = i)}
-      ></div>
-    {/each}
   </div>
   

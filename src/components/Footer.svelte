@@ -1,5 +1,6 @@
 <style>
     .footer {
+      width: 100%;
       background: black;
       color: white;
       padding: 10px;
@@ -9,15 +10,15 @@
     }
   
     .icon {
-      width: 20px;
+      width: 50px;
       cursor: pointer;
     }
   </style>
   
   <div class="footer">
-    <img class="icon" src="/ruta/a/icono-x.png" alt="X" />
-    <img class="icon" src="/ruta/a/icono-youtube.png" alt="YouTube" />
-    <img class="icon" src="/ruta/a/icono-facebook.png" alt="Facebook" />
-    <img class="icon" src="/ruta/a/icono-instagram.png" alt="Instagram" />
+    <img class="icon" src="/images/icons/twitter.png" alt="twitter" />
+    <img class="icon" src="/images/icons/youtube.png" alt="YouTube" />
+    <img class="icon" src="/images/icons/facebook.png" alt="Facebook" />
+    <img class="icon" src="/images/icons/instagram.png" alt="Instagram" />
   </div>
   
