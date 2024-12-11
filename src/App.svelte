@@ -1,30 +1,32 @@
 <script>
-	export let name;
-</script>
-
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+	import Navbar from './components/Navbar.svelte';
+	import SearchBar from './components/SearchBar.svelte';
+	import Carousel from './components/Carousel.svelte';
+	import Footer from './components/Footer.svelte';
+  
+	let background = '/images/Deadpool-Galactus-marvel-space-stars.png';
+  </script>
+  
+  <style>
+	body {
+	  margin: 0;
+	  padding: 0;
+	  background: url({background}) no-repeat center center fixed;
+	  background-size: cover;
+	  font-family: Arial, sans-serif;
 	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+  
+	.main-container {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
 	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+  </style>
+  
+  <div class="main-container">
+	<SearchBar />
+	<Navbar />
+	<Carousel />
+	<Footer />
+  </div>
+  
